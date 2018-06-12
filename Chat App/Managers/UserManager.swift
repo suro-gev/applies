@@ -10,5 +10,9 @@ import Foundation
 
 
 class UserManager {
-    var currentUser: User?
+    var user: User?
+    
+    func currentUser() -> User? {
+        return user
+    }
 }
