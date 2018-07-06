@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        emailTextField.becomeFirstResponder()
         // Do any additional setup after loading the view.
     }
 
@@ -38,8 +39,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             present(alert, animated: true, completion: nil)
             return
         }
-        
-        guard let email = emailTextField.text, email.isValidEmail() else {
+                guard let email = emailTextField.text, email.isValidEmail() else {
             let alert = UIAlertController(title: "Warning", message: "Incorrect email", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
                 self.emailTextField.text = nil
@@ -57,7 +57,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("error")
             }
         }
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

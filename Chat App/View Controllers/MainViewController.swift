@@ -8,35 +8,39 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, ContactsViewControllerDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    @IBOutlet weak var tableView: UITableView!
+    let manager = ConversationManager()
     
-
+    
     @IBAction func logOutAction(_ sender: Any) {
         UserManager().logout()
         navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func showContacts(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "contactsViewController") as! ContactsViewController
+        vc.delegate = self
+        present(vc, animated: true, completion:  nil)
+    }
+    
+    func didSelectUser(with id: String) {
         
     }
     
-    
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+
+extension MainViewController : UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "")
+        return cell!
+    }
+    
 }

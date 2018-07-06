@@ -15,7 +15,7 @@ class InitialViewController: UIViewController {
         
         let manager = UserManager()
         
-        if manager.currentUser() {
+        if manager.current() {
             let vc = storyboard?.instantiateViewController(withIdentifier: "mainNavigation")
             present(vc!, animated: true, completion: nil)
         } else {

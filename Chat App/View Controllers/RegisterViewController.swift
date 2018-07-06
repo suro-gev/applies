@@ -9,51 +9,52 @@
 import UIKit
 import FirebaseAuth
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    let picker = ImagePickerService()
     let manager = UserManager()
+    let user = User()
     
-    @IBOutlet weak var nameTxtField: UITextField!
-    @IBOutlet weak var emailTxtField: UITextField!
-    @IBOutlet weak var passwordTxtField: UITextField!
-    @IBOutlet weak var confPasswordTxtField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var profileImageView: UIImageView!
+
     
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-        }
-        Auth.auth().removeStateDidChangeListener(handle)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func registerAction(_ sender: Any) {
-        if (nameTxtField.text?.isValidName())! && (emailTxtField.text?.isValidEmail())! && (passwordTxtField.text?.isValidPassword())! && passwordTxtField.text == confPasswordTxtField.text {
-            manager.register(email: emailTxtField.text!, password: passwordTxtField.text!) { error in
-                print("Error")
+        if passwordTextField.text == confirmPasswordTextField.text {
+            user.name = nameTextField.text
+            user.lastName = lastNameTextField.text
+            user.email = emailTextField.text
+            user.password = passwordTextField.text
+            ThemeService().showLoading(true)
+            UserManager().register(user: user) {[weak self] status in
+                if status {
+                    self?.navigationController?.dismiss(animated: true, completion: nil)
+                } else {
+                    print("error")
+                }
+                ThemeService().showLoading(false)
             }
+        } else {
+            passwordTextField.text = nil
+            confirmPasswordTextField.text = nil
+            let alert = UIAlertController(title: "Passwords don't match!", message: "Please enter your password again!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
         }
-        self.navigationController?.popViewController(animated: true)
+        
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func selectImage(_ sender: Any) {
+        picker.pick(from: self) {[weak self] image in
+            self?.profileImageView.image = image
+            self?.user.profilePic = image
+        }
     }
-    */
-
+    
+    
 }
