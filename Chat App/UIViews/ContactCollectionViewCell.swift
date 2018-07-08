@@ -13,15 +13,11 @@ class ContactCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
-    
-    
-    override func awakeFromNib() {
-//        userImageView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height - 35)
-//        userNameLabel.frame = CGRect(x: Int(userImageView.frame.height + 15), y: 0, width: Int(self.frame.width), height: 15)
-        activityIndicator.center = userImageView.center
-    }
-    
+ 
+    //    override func awakeFromNib() {
+    //    }
+
+
     func set(_ user: User?) {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()

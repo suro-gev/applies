@@ -35,7 +35,6 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ContactCollectionViewCell
-        cell.layer.cornerRadius = 10
         cell.set(users[indexPath.row])
         return cell
     }

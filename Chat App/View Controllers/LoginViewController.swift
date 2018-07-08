@@ -30,31 +30,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginAction(_ sender: Any) {
         guard let psw  = passwordTextField.text, psw.isValidPassword() else {
-            let alert = UIAlertController(title: "Warning", message: "Short password", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                self.passwordTextField.text = nil
-            })
-            alert.addAction(action)
-            
-            present(alert, animated: true, completion: nil)
+            createAlert(with: "Warning", and: "Invalid Password")
             return
         }
                 guard let email = emailTextField.text, email.isValidEmail() else {
-            let alert = UIAlertController(title: "Warning", message: "Incorrect email", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                self.emailTextField.text = nil
-            })
-            alert.addAction(action)
-            
-            present(alert, animated: true, completion: nil)
+            createAlert(with: "Wrning", and: "Invalid Email")
             return
         }
         
+        
+        ThemeService().showLoading(true)
         manager.login(email: email, password: psw) { status in
+            ThemeService().showLoading(false)
             if status {
                 self.navigationController?.dismiss(animated: true, completion: nil)
             } else {
-                print("error")
+                self.createAlert(with: "Login error", and: "Account not found. Please enter your login and password again.")
             }
         }
     }
@@ -64,5 +55,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 
+    
+    private func createAlert(with title: String, and text: String) {
+        let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Done", style: .default, handler: { _ in
+            self.passwordTextField.text = ""
+            self.emailTextField.text = ""
+            self.emailTextField.becomeFirstResponder()
+            
+        })
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
+    }
 
 }

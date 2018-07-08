@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseStorage
 
 extension Networkable {
-    
+    /*
     func create<T: FirestorageCodable>(object: T, completion: @escaping (Bool) -> Void) {
         if let image = object.profilePic, let data = UIImagePNGRepresentation(image) {
             let ref = Storage.storage().reference().child(T.reference()).child(object.id).child(object.id + ".png")
@@ -56,7 +56,7 @@ extension Networkable {
                 completion(false)
             }
         }
-    }
+    }*/
     
     
     func objects<T: FirestoreCodable>(object: T.Type, parameters: (String, Any)?, completion: @escaping CompletionValues<T>){
@@ -83,5 +83,44 @@ extension Networkable {
         }
     }
     
+    
+    
+    func create<T: FirestoreCodable>(object: T, completion: @escaping (Bool) -> Void) {
+        if let obj = object as? FirestorageCodable, let image = obj.profilePic, let data = UIImagePNGRepresentation(image) {
+            
+            let ref = Storage.storage().reference().child(T.reference()).child(obj.id).child(obj.id + ".png")
+            ref.putData(data, metadata: nil) { (metadata, error) in
+                guard error == nil else {
+                    Firestore.firestore().collection(T.reference()).document(obj.id).setData(obj.mappedData(), merge: true) { (error) in
+                        if error == nil {
+                            completion(true)
+                        } else {
+                            completion(false)
+                        }
+                    }
+                    return
+                }
+                ref.downloadURL(completion: { (url, _) in
+                    obj.profilePicLink = url?.absoluteString
+                    Firestore.firestore().collection(T.reference()).document(obj.id).setData(obj.mappedData(), merge: true) { (error) in
+                        if error == nil {
+                            completion(true)
+                        } else {
+                            completion(false)
+                        }
+                    }
+                })
+            }
+            
+        } else {
+            Firestore.firestore().collection(T.reference()).document(object.id).setData(object.mappedData(), merge: true) { (error) in
+                if error == nil {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    }
     
 }

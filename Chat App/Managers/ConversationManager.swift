@@ -19,11 +19,33 @@ class ConversationManager: Networkable {
     
     func newConversation(userID: String, completion: @escaping (Bool) -> Void) {
         guard let id = UserManager().currentID() else { completion(false); return }
-        let conversation = Conversation()
-        conversation.userID = id
-        conversation.secondUserID = userID
-        create(object: conversation) { (response) in
-            completion(response)
+        didConversationExist(with: userID) { (result) in
+            if result {
+                completion(false)
+                return
+            } else {
+                let conversation = Conversation()
+                conversation.userID = id
+                conversation.secondUserID = userID
+                self.create(object: conversation) { (response) in
+                    completion(response)
+                }
+            }
+        }
+    }
+    
+    private func didConversationExist(with id: String, completion: @escaping (Bool) -> Void) {
+        var conversations = [Conversation]()
+        self.fetchAllConversations { (result) in
+            conversations = result
+            
+            for conversation in conversations {
+                if (conversation.userID == UserManager().currentID() && conversation.secondUserID == id) || (conversation.secondUserID == UserManager().currentID() && conversation.userID == id) {
+                    completion(true)
+                    return
+                }
+            }
+            completion(false)
         }
     }
 }
