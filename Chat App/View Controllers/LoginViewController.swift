@@ -38,7 +38,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        
+        passwordTextField.resignFirstResponder()
         ThemeService().showLoading(true)
         manager.login(email: email, password: psw) { status in
             ThemeService().showLoading(false)

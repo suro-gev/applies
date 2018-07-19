@@ -16,6 +16,7 @@
 		FE1BB06620ED6ADB00C12239 /* Networkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1BB06520ED6ADB00C12239 /* Networkable.swift */; };
 		FE1BB06820ED6B1C00C12239 /* NetworkableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1BB06720ED6B1C00C12239 /* NetworkableExtension.swift */; };
 		FE44303C20EE65B1008CCB83 /* ConversationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44303B20EE65B1008CCB83 /* ConversationManager.swift */; };
+		FE8A1D8F20F3E1D000BDD6D5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A1D8E20F3E1D000BDD6D5 /* ChatViewController.swift */; };
 		FE9C2C2420D54BC100083D7E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9C2C2320D54BC100083D7E /* RegisterViewController.swift */; };
 		FEAD274D20EF7C01004F65F7 /* CompletionTypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD274C20EF7C01004F65F7 /* CompletionTypeAlias.swift */; };
 		FEAEF12B20D7D8C8000EDD41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEAEF12A20D7D8C8000EDD41 /* GoogleService-Info.plist */; };
@@ -32,6 +33,7 @@
 		FEF8FBEB20D015CF0067E002 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF8FBEA20D015CF0067E002 /* UserManager.swift */; };
 		FEF8FBED20D0163D0067E002 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF8FBEC20D0163D0067E002 /* InitialViewController.swift */; };
 		FEF8FBF020D01E790067E002 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF8FBEF20D01E790067E002 /* LoginViewController.swift */; };
+		FEFD2EBB20FF3E5F00017980 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFD2EBA20FF3E5F00017980 /* ChatTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,7 @@
 		FE1BB06520ED6ADB00C12239 /* Networkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkable.swift; sourceTree = "<group>"; };
 		FE1BB06720ED6B1C00C12239 /* NetworkableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkableExtension.swift; sourceTree = "<group>"; };
 		FE44303B20EE65B1008CCB83 /* ConversationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationManager.swift; sourceTree = "<group>"; };
+		FE8A1D8E20F3E1D000BDD6D5 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		FE9C2C2320D54BC100083D7E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		FEAD274C20EF7C01004F65F7 /* CompletionTypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionTypeAlias.swift; sourceTree = "<group>"; };
 		FEAEF12A20D7D8C8000EDD41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -64,6 +67,7 @@
 		FEF8FBEA20D015CF0067E002 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FEF8FBEC20D0163D0067E002 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		FEF8FBEF20D01E790067E002 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FEFD2EBA20FF3E5F00017980 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				FE17653B20EBD6FF00D7C7AC /* ContactCollectionViewCell.swift */,
+				FEFD2EBA20FF3E5F00017980 /* ChatTableViewCell.swift */,
 			);
 			path = UIViews;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 				FE9C2C2320D54BC100083D7E /* RegisterViewController.swift */,
 				FEAEF12C20D945BF000EDD41 /* MainViewController.swift */,
 				FE17653820EBCCD000D7C7AC /* ContactsViewController.swift */,
+				FE8A1D8E20F3E1D000BDD6D5 /* ChatViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -364,11 +370,13 @@
 				FE1BB06620ED6ADB00C12239 /* Networkable.swift in Sources */,
 				FEBFDD2C20DA95F0007F6F2F /* FirestoreService.swift in Sources */,
 				FEF8FBEB20D015CF0067E002 /* UserManager.swift in Sources */,
+				FEFD2EBB20FF3E5F00017980 /* ChatTableViewCell.swift in Sources */,
 				FEAD274D20EF7C01004F65F7 /* CompletionTypeAlias.swift in Sources */,
 				FE9C2C2420D54BC100083D7E /* RegisterViewController.swift in Sources */,
 				FE1BB06220ED6A2C00C12239 /* ImagePickerService.swift in Sources */,
 				FE17653C20EBD6FF00D7C7AC /* ContactCollectionViewCell.swift in Sources */,
 				FEC60FF620D2B7250093CF90 /* StringExtension.swift in Sources */,
+				FE8A1D8F20F3E1D000BDD6D5 /* ChatViewController.swift in Sources */,
 				FE1BB06020ED69F000C12239 /* ImageDownloadService.swift in Sources */,
 				FE1BB06820ED6B1C00C12239 /* NetworkableExtension.swift in Sources */,
 				FE17653620EBC63200D7C7AC /* ThemeService.swift in Sources */,

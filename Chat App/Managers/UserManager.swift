@@ -77,8 +77,7 @@ class UserManager: Networkable {
             completion(filteredUsers)
         }
     }
-    
-    
+
     func logout() {
         try? Auth.auth().signOut()
     }

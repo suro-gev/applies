@@ -14,8 +14,10 @@ class ContactCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
  
-    //    override func awakeFromNib() {
-    //    }
+        override func awakeFromNib() {
+            userImageView.layer.cornerRadius = 15
+            userImageView.clipsToBounds = true
+        }
 
 
     func set(_ user: User?) {
@@ -23,7 +25,8 @@ class ContactCollectionViewCell: UICollectionViewCell {
         activityIndicator.startAnimating()
         userNameLabel.text = user?.name
         ImageDownloadService().download(url: user?.profilePicLink) { [weak self] image in
-            self?.userImageView.image = image
+            user?.profilePic = image
+            self?.userImageView.image = user?.profilePic
             self?.activityIndicator.stopAnimating()
             self?.activityIndicator.isHidden = true
         }

@@ -11,10 +11,10 @@ import ALLoadingView
 
 class ThemeService {
     
-    func showLoading(_ status: Bool) {
+    func showLoading(_ status: Bool, _ message: String = "") {
         if status {
-            ALLoadingView.manager.messageText = ""
-            ALLoadingView.manager.animationDuration = 1.0
+            ALLoadingView.manager.messageText = message
+            ALLoadingView.manager.animationDuration = 0.5
             ALLoadingView.manager.showLoadingView(ofType: .messageWithIndicator)
         } else {
             ALLoadingView.manager.hideLoadingView()
